@@ -179,6 +179,22 @@
             text-decoration: underline;
         }
 
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
         /* Enhanced Responsive Styles */
         @media (max-width: 1200px) {
             .auth-card {
@@ -271,10 +287,11 @@
                         <img src="../images/logo.png" alt="Everysip Logo">
                     </div>
                     <h2>Login to Your Account</h2>
-                    <form class="auth-form" id="loginForm">
+                    <div id="message-container"></div>
+                    <form class="auth-form" action="../user_auth/login.php" method="POST">
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required placeholder="Enter your username">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
@@ -294,15 +311,26 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Check for success or error messages in URL
+        window.onload = function() {
+            const messageContainer = document.getElementById('message-container');
+            const success = getUrlParameter('success');
+            const error = getUrlParameter('error');
             
-            // For demonstration purposes
-            console.log('Login attempt:', { email, password });
-            // You would typically make an API call here
-        });
+            if (success === '1') {
+                messageContainer.innerHTML = '<div class="message success">Registration successful! You can now login.</div>';
+            } else if (error) {
+                messageContainer.innerHTML = '<div class="message error">' + error + '</div>';
+            }
+        };
     </script>
 </body>
 </html> 

@@ -21,7 +21,7 @@
             border-radius: 30px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 1500px;
+            max-width: 1200px;
             min-height: 700px;
             overflow: hidden;
         }
@@ -185,6 +185,17 @@
             text-decoration: underline;
         }
 
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
         /* Enhanced Responsive Styles */
         @media (max-width: 1500px) {
             .auth-card {
@@ -299,10 +310,11 @@
                         <img src="../images/logo.png" alt="Everysip Logo">
                     </div>
                     <h2>Create Your Account</h2>
-                    <form class="auth-form" id="signupForm">
+                    <div id="message-container"></div>
+                    <form class="auth-form" action="../user_auth/register.php" method="POST">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required placeholder="Choose a username">
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address</label>
@@ -314,6 +326,10 @@
                             <div class="password-requirements">
                                 Password must be at least 8 characters long and include a number
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password">
                         </div>
                         <button type="submit" class="auth-button">Create Account</button>
                         <div class="terms">
@@ -329,23 +345,23 @@
     </div>
 
     <script>
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Basic validation
-            if (password.length < 8 || !/\d/.test(password)) {
-                alert('Password must be at least 8 characters long and include a number!');
-                return;
-            }
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
 
-            // For demonstration purposes
-            console.log('Signup attempt:', { name, email, password });
-            // You would typically make an API call here
-        });
+        // Check for error messages in URL
+        window.onload = function() {
+            const messageContainer = document.getElementById('message-container');
+            const error = getUrlParameter('error');
+            
+            if (error) {
+                messageContainer.innerHTML = '<div class="message error">' + error + '</div>';
+            }
+        };
     </script>
 </body>
 </html> 

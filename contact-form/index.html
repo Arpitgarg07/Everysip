@@ -59,29 +59,33 @@
                     <li><a href="#"><img src="img/5.png" alt=""></a></li>
                 </ul>
             </div>
-            <form action="https://api.web3forms.com/submit" method="POST">
+            <form id="contactForm" action="process_contact.php" method="POST">
             <div class="contactForm">
                 <h2 style="text-align:center; font-size: 26px;"><b>Advertise your Brand with us</b></h2>
                 <div class="formBox">
-                    <input type="hidden" name="access_key" value="4b29952d-d10d-4311-966c-dfd9ff279a9c">
                     <div class="inputBox w50">
-                        <input type="text" name="name" id="firstname" required>
+                        <input type="text" name="name" id="firstname" required 
+                               aria-label="First Name" title="First Name">
                         <span>First Name</span>
                     </div>
                     <div class="inputBox w50">
-                        <input type="text" name="name" id="lastname" required>
+                        <input type="text" name="lastname" id="lastname" required
+                               aria-label="Last Name" title="Last Name">
                         <span>Last Name</span>
                     </div>
                     <div class="inputBox w50">
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" name="email" id="email" required
+                               aria-label="Email" title="Email">
                         <span>Email</span>
                     </div>
                     <div class="inputBox w50">
-                        <input type="text" name="phone" id="phone" required>
+                        <input type="text" name="phone" id="phone" required
+                               aria-label="Mobile Number" title="Mobile Number">
                         <span>Mobile Number</span>
                     </div>
                     <div class="inputBox w100">
-                        <textarea name="message" id="message" required></textarea>
+                        <textarea name="message" id="message" required
+                                  aria-label="Message" title="Write Your Message Here"></textarea>
                         <span>Write Your Message Here.</span>
                     </div>
                     <div class="inputBox w100">
@@ -162,33 +166,51 @@
 
 
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script >
-
+    <script>
         // Get the "Home" link by its ID or class
         document.getElementById("home-link").addEventListener("click", function(event) {
-        // Prevent the default anchor link behavior
-        event.preventDefault();
-        
-            // Redirect to the outer-located index.html
-            window.location.href = "../index.html"; // Adjust the path as needed
+            event.preventDefault();
+            window.location.href = "../index.html";
         });
 
-        function sendEmail(){
-            Email.send({
-                Host : "smtp.elasticemail.com",
-                Username : "webytube73@gmail.com",
-                Password : "4546D3C844C5818979CAB2BEEC0BD6FC8397",
-                To : 'arpitgarg5689@gmail.com',
-                From : document.getElementById("email").value,
-                Subject : "Advertising inquiry",
-                Body : "First Name: " + document.getElementById("lirstname").value + "Last Name: " + document.getElementById("lastname").value
-                    + "<br> Email: " + document.getElementById("email").value
-                    + "<br> Phone: " + document.getElementById("phone").value
-                    + "<br> Message: " + document.getElementById("message").value
-            }).then(
-            message => alert("Message sent succesfully")
-            );
-        }
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            // Log form data for debugging
+            console.log('Submitting form data:', Object.fromEntries(formData));
+            
+            fetch('process_contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                console.log('Raw response:', response);
+                return response.text().then(text => {
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        console.error('Error parsing JSON:', text);
+                        throw new Error('Invalid JSON response from server');
+                    }
+                });
+            })
+            .then(data => {
+                console.log('Parsed response:', data);
+                if(data.status === 'success') {
+                    alert(data.message);
+                    this.reset();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form. Please try again later.');
+            });
+        });
     </script>
 </body>
 </html>
