@@ -1,0 +1,244 @@
+/* FAQ Section Styles */
+.faq-section {
+    padding: 80px 20px;
+    background-color: #f8f9fa;
+}
+
+.faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Title Styles */
+.faq-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.faq-title h1 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.faq-title p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Category Buttons */
+.faq-categories {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.category-button {
+    padding: 10px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 30px;
+    background: transparent;
+    color: #666;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-button:hover {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.category-button.active {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* FAQ List Styles */
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question h3 {
+    font-size: 1.1rem;
+    color: #1a1a1a;
+    margin: 0;
+    font-weight: 600;
+}
+
+.faq-toggle {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.faq-toggle::before,
+.faq-toggle::after {
+    content: '';
+    position: absolute;
+    background-color: #007bff;
+    transition: all 0.3s ease;
+}
+
+.faq-toggle::before {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.faq-toggle::after {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.faq-item.active .faq-toggle::before {
+    transform: translateX(-50%) rotate(90deg);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 20px 20px;
+    max-height: 500px;
+}
+
+.faq-answer p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Contact Section */
+.faq-contact {
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-contact h2 {
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.faq-contact p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.contact-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 60px 15px;
+    }
+
+    .faq-title h1 {
+        font-size: 2rem;
+    }
+
+    .faq-title p {
+        font-size: 1rem;
+    }
+
+    .category-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .faq-question h3 {
+        font-size: 1rem;
+    }
+
+    .faq-contact {
+        padding: 30px 20px;
+    }
+
+    .faq-contact h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation for FAQ items */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-item {
+    animation: slideDown 0.3s ease forwards;
+}
+
+/* Stagger animation for FAQ items */
+.faq-item:nth-child(1) { animation-delay: 0.1s; }
+.faq-item:nth-child(2) { animation-delay: 0.2s; }
+.faq-item:nth-child(3) { animation-delay: 0.3s; }
+.faq-item:nth-child(4) { animation-delay: 0.4s; }
+.faq-item:nth-child(5) { animation-delay: 0.5s; }
+.faq-item:nth-child(6) { animation-delay: 0.6s; }
+.faq-item:nth-child(7) { animation-delay: 0.7s; }
+.faq-item:nth-child(8) { animation-delay: 0.8s; }
+} 

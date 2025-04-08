@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Everysip</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+        }
+
+        .auth-card {
+            display: flex;
+            background: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .auth-image {
+            flex: 1;
+            background-image: url('../images/multi.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .auth-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(31, 33, 34, 0.6);
+        }
+
+        .image-content {
+            position: relative;
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .image-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .image-content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        .auth-form-container {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-box {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .auth-box h2 {
+            color: #1F2122;
+            margin-bottom: 40px;
+            font-size: 32px;
+            text-align: left;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #1F2122;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #f2f2f2;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6fcaed;
+            background-color: #ffffff;
+        }
+
+        .auth-button {
+            background-color: #1F2122;
+            color: #ffffff;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .auth-button:hover {
+            background-color: #6fcaed;
+            transform: translateY(-2px);
+        }
+
+        .auth-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .auth-links a {
+            color: #1F2122;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .auth-links a:hover {
+            color: #6fcaed;
+        }
+
+        .logo-container {
+            margin-bottom: 40px;
+        }
+
+        .logo-container img {
+            height: 48px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -15px;
+        }
+
+        .forgot-password a {
+            color: #6fcaed;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* Enhanced Responsive Styles */
+        @media (max-width: 1200px) {
+            .auth-card {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .image-content h1 {
+                font-size: 2em;
+            }
+            
+            .image-content p {
+                font-size: 1em;
+            }
+            
+            .auth-form-container {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .auth-image {
+                display: none;
+            }
+            
+            .auth-form-container {
+                padding: 40px 20px;
+            }
+            
+            .auth-card {
+                min-height: auto;
+                max-width: 95%;
+            }
+            
+            .auth-box h2 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 20px 10px;
+            }
+            
+            .auth-form-container {
+                padding: 30px 15px;
+            }
+            
+            .auth-box {
+                max-width: 100%;
+            }
+            
+            .auth-box h2 {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+            
+            .form-group input {
+                padding: 12px;
+            }
+            
+            .auth-button {
+                padding: 14px;
+            }
+            
+            .logo-container {
+                margin-bottom: 25px;
+            }
+            
+            .logo-container img {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-image">
+                <div class="image-content">
+                    <h1>Welcome Back!</h1>
+                    <p>Log in to access your account and explore our premium paper cup solutions for your business.</p>
+                </div>
+            </div>
+            <div class="auth-form-container">
+                <div class="auth-box">
+                    <div class="logo-container">
+                        <img src="../images/logo.png" alt="Everysip Logo">
+                    </div>
+                    <h2>Login to Your Account</h2>
+                    <form class="auth-form" id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required placeholder="Enter your password">
+                        </div>
+                        <div class="forgot-password">
+                            <a href="#">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="auth-button">Login</button>
+                    </form>
+                    <div class="auth-links">
+                        <a href="signup.html">Don't have an account? Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // For demonstration purposes
+            console.log('Login attempt:', { email, password });
+            // You would typically make an API call here
+        });
+    </script>
+</body>
+</html> 

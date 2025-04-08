@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="100" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .starbucks-text { font-family: Arial, sans-serif; font-weight: bold; }
+  </style>
+  <rect width="180" height="100" fill="white" rx="8" ry="8"/>
+  <text x="90" y="60" font-size="24" text-anchor="middle" class="starbucks-text" fill="#006241">STARBUCKS</text>
+</svg> 
